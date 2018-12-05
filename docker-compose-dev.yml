@@ -23,7 +23,7 @@ services:
 
     # rely on the RAILS_ENV value of the host machine
     environment:
-      RAILS_ENV: "production"
+      RAILS_ENV: "development"
 
     # makes the app container aware of the DB container
     depends_on:
