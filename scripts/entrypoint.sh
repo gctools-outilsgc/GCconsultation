@@ -13,9 +13,7 @@ usermod -g "$USER_GID" consul 2> /dev/null
 chown -R -h "$USER_UID" "$BUNDLE_PATH"
 chgrp -R -h "$USER_GID" "$BUNDLE_PATH"
 
-bundle install
-
-rake db:migrate
+sleep 5
 
 /usr/bin/sudo -EH -u consul "$@"
 
