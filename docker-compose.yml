@@ -35,5 +35,5 @@ services:
     # map our application source code, in full, to the application root of our container
     volumes:
       - ./bundle:/usr/local/bundle
-      - /serverRoot:/system
+      - ./serverRoot:/system
 
