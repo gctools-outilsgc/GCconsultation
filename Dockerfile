@@ -53,6 +53,10 @@ RUN ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
 # Copy the Rails application into place
 COPY . .
 RUN chmod -R 0776 . 
+
+# Start Dalli memchached service
+RUN service memcached start
+
 # Define the script we want run once the container boots
 # Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
 # CMD [ "config/containers/app_cmd.sh" ]

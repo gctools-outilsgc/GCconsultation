@@ -34,6 +34,6 @@ services:
       - "3000:3000"
     # map our application source code, in full, to the application root of our container
     volumes:
-      - bundle:/usr/local/bundle
-volumes:
-  bundle: {}
+      - ./bundle:/usr/local/bundle
+      - /serverRoot:/system
+
