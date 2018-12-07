@@ -14,6 +14,7 @@ chown -R -h "$USER_UID" "$BUNDLE_PATH"
 chgrp -R -h "$USER_GID" "$BUNDLE_PATH"
 
 sleep 5
+service memcached start
 
 /usr/bin/sudo -EH -u consul "$@"
 
