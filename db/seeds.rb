@@ -26,10 +26,10 @@ Setting["max_votes_for_proposal_edit"] = 1000
 Setting['comments_body_max_length'] = 1000
 
 # Prefix for the Proposal codes
-Setting["proposal_code_prefix"] = 'CONSUL'
+Setting["proposal_code_prefix"] = 'GCconsultation'
 
 # Number of votes needed for proposal success
-Setting["votes_for_proposal_success"] = 53726
+Setting["votes_for_proposal_success"] = 1000
 
 # Months to archive proposals
 Setting["months_to_archive_proposals"] = 12
@@ -56,13 +56,13 @@ Setting["transparency_url"] = nil
 Setting["opendata_url"] = "/opendata"
 
 # Public-facing URL of the app.
-Setting["url"] = "http://example.com"
+Setting["url"] = "https://consul.beta.gccollab.ca"
 
 # CONSUL installation's organization name
-Setting["org_name"] = "CONSUL"
+Setting["org_name"] = "GCconsultation"
 
 # CONSUL installation place name (City, Country...)
-Setting["place_name"] = "CONSUL-land"
+Setting["place_name"] = "Canada"
 
 # Meta tags for SEO
 Setting["meta_title"] = nil
@@ -74,8 +74,8 @@ Setting['feature.debates'] = true
 Setting['feature.proposals'] = true
 Setting['feature.spending_proposals'] = nil
 Setting['feature.polls'] = true
-Setting['feature.twitter_login'] = true
-Setting['feature.facebook_login'] = true
+Setting['feature.twitter_login'] = false
+Setting['feature.facebook_login'] = false
 Setting['feature.google_login'] = true
 Setting['feature.gcaccount_login'] = true
 Setting['feature.public_stats'] = true
@@ -109,8 +109,8 @@ Setting['proposal_notification_minimum_interval_in_days'] = 3
 Setting['direct_message_max_per_day'] = 3
 
 # Email settings
-Setting['mailer_from_name'] = 'CONSUL'
-Setting['mailer_from_address'] = 'noreply@consul.dev'
+Setting['mailer_from_name'] = 'GCconsultation'
+Setting['mailer_from_address'] = 'noreply@consul.beta.gccollab.ca'
 
 # Verification settings
 Setting['verification_offices_url'] = 'http://oficinas-atencion-ciudadano.url/'

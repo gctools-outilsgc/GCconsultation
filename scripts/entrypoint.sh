@@ -10,10 +10,8 @@ usermod -u "$USER_UID" consul 2> /dev/null
 groupmod -g "$USER_GID" consul 2> /dev/null
 usermod -g "$USER_GID" consul 2> /dev/null
 
-chown -R -h "$USER_UID" "$BUNDLE_PATH"
-chgrp -R -h "$USER_GID" "$BUNDLE_PATH"
-
 sleep 5
+service memcached start
 
 /usr/bin/sudo -EH -u consul "$@"
 

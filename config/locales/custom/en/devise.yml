@@ -1,0 +1,5 @@
+en:
+  devise:
+    omniauth_callbacks:
+      failure: "It has not been possible to authorize you with %{kind} because of \"%{reason}\"."
+      success: "Successfully logged in with %{kind}."
