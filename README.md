@@ -26,32 +26,19 @@ Development started on [2015 July 15th](https://github.com/consul/consul/commit/
 
 **NOTE**: For more detailed instructions check the [docs](https://consul_docs.gitbooks.io/docs/)
 
-Prerequisites: install git, Ruby 2.3.2, `bundler` gem, Node.js and PostgreSQL (>=9.4).
+Prerequisites: You should have installed Docker and Docker Compose in your machine
 
 ```bash
-git clone https://github.com/consul/consul.git
-cd consul
-bundle install
-cp config/database.yml.example config/database.yml
+git clone https://github.com/gctools-outilsgc/GCconsultation.git ./gcconsultation
+cd gcconsultation
+cp config/database-docker.yml.example config/database.yml
 cp config/secrets.yml.example config/secrets.yml
-bin/rake db:create
-bin/rake db:migrate
-bin/rake db:dev_seed
-RAILS_ENV=test rake db:setup
-```
-
-Run the app locally:
-
-```bash
-bin/rails s
-```
-
-Prerequisites for testing: install ChromeDriver >= 2.33
-
-Run the tests with:
-
-```bash
-bin/rspec
+sudo docker-compose -f docker-compose-dev.yml up -d database
+sudo docker-compose -f docker-compose-dev.yml run app rake db:create
+sudo docker-compose -f docker-compose-dev.yml run app rake db:migrate
+sudo docker-compose -f docker-compose-dev.yml run app rake db:seed
+sudo docker-compose down
+sudo docker-compose -f docker-compose-dev.yml up
 ```
 
 You can use the default admin user from the seeds file:
@@ -63,10 +50,6 @@ But for some actions like voting, you will need a verified user, the seeds file 
 
  **user:** verified@consul.dev
  **pass:** 12345678
-
-## Configuration for production environments
-
-See [installer](https://github.com/consul/installer)
 
 ## Documentation
 
