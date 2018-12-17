@@ -11,7 +11,10 @@ groupmod -g "$USER_GID" consul 2> /dev/null
 usermod -g "$USER_GID" consul 2> /dev/null
 
 sleep 5
+
+bundle check || bundle install
+
 service memcached start
 
-/usr/bin/sudo -EH -u consul "$@"
+"$@"
 
