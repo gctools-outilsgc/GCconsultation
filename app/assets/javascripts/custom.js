@@ -5,3 +5,7 @@
 //
 //
 
+//Auto hide for notification
+$(document).on('page:change', function(){
+     $(".alert").delay(5000).slideUp(500);
+    });
