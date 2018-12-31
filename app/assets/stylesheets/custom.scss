@@ -4,13 +4,18 @@
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
 
+// Set header gradiant
+header {
+  background: linear-gradient(to right, #3b6775, #3F6F80, #4D889C) !important;  
+}
+
 // Remove auto height from top bar and prep background for header gradiant
 .top-bar {
-  background-color: none;
+  background: transparent !important;
 
   .top-bar-title {
     line-height: $line-height;
-    
+
     a img {
       height: rem-calc(48);
       margin: 0;
