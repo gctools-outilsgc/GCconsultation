@@ -4,6 +4,20 @@
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
 
+// Remove auto height from top bar and prep background for header gradiant
+.top-bar {
+  background-color: none;
+  .top-bar-title {
+    line-height: $line-height;
+    a img {
+      height: rem-calc(48);
+      margin: 0;
+      width: auto;
+    }
+  }
+}
+
+//GCaccount login icon styling
 @charset "UTF-8";
 
 @font-face {
