@@ -4,3 +4,6 @@ fr:
       sign_in: S'enregistrer avec compteGC
       sign_up: S'enregistrer avec compteGC
       name: compteGC
+  layouts:
+    footer:
+      logo_canada: Symbole du gouvernement du Canada
