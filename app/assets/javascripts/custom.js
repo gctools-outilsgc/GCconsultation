@@ -7,5 +7,5 @@
 
 //Auto hide for notification
 $(document).on('page:change', function(){
-     $(".alert").delay(5000).slideUp(500);
+     $(".notice-container").delay(5000).slideUp(500);
     });
