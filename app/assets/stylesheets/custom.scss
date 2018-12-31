@@ -12,6 +12,11 @@ header {
 // Remove auto height from top bar and prep background for header gradiant
 .top-bar {
   background: transparent !important;
+  background: url("tri-graphics.png") !important;
+  background-size: cover !important;
+  background-position: right !important;
+  background-clip: padding-box !important;
+  background-repeat: no-repeat !important;
 
   .top-bar-title {
     line-height: $line-height;
