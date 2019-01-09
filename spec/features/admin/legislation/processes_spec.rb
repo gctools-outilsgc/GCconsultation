@@ -12,11 +12,16 @@ feature 'Admin legislation processes' do
                   "edit_admin_legislation_process_path",
                   %w[title summary description additional_info]
 
+  it_behaves_like "admin_milestoneable",
+                  :legislation_process,
+                  "admin_legislation_process_milestones_path"
+
   context "Feature flag" do
 
     scenario 'Disabled with a feature flag' do
       Setting['feature.legislation'] = nil
-      expect{ visit admin_legislation_processes_path }.to raise_exception(FeatureFlags::FeatureDisabled)
+      expect{ visit admin_legislation_processes_path }
+      .to raise_exception(FeatureFlags::FeatureDisabled)
     end
 
   end
@@ -51,14 +56,22 @@ feature 'Admin legislation processes' do
       fill_in 'legislation_process[start_date]', with: base_date.strftime("%d/%m/%Y")
       fill_in 'legislation_process[end_date]', with: (base_date + 5.days).strftime("%d/%m/%Y")
 
-      fill_in 'legislation_process[debate_start_date]', with: base_date.strftime("%d/%m/%Y")
-      fill_in 'legislation_process[debate_end_date]', with: (base_date + 2.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[draft_start_date]', with: (base_date - 3.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[draft_end_date]', with: (base_date - 1.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[draft_publication_date]', with: (base_date + 3.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[allegations_start_date]', with: (base_date + 3.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[allegations_end_date]', with: (base_date + 5.days).strftime("%d/%m/%Y")
-      fill_in 'legislation_process[result_publication_date]', with: (base_date + 7.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[debate_start_date]',
+               with: base_date.strftime("%d/%m/%Y")
+      fill_in 'legislation_process[debate_end_date]',
+               with: (base_date + 2.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[draft_start_date]',
+               with: (base_date - 3.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[draft_end_date]',
+               with: (base_date - 1.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[draft_publication_date]',
+               with: (base_date + 3.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[allegations_start_date]',
+               with: (base_date + 3.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[allegations_end_date]',
+               with: (base_date + 5.days).strftime("%d/%m/%Y")
+      fill_in 'legislation_process[result_publication_date]',
+               with: (base_date + 7.days).strftime("%d/%m/%Y")
 
       click_button 'Create process'
 
@@ -183,6 +196,26 @@ feature 'Admin legislation processes' do
 
       visit admin_legislation_process_proposals_path(process)
       expect(page).to have_field("Categories", with: "bicycles, recycling")
+    end
+
+    scenario "Edit milestones summary", :js do
+      visit admin_legislation_process_milestones_path(process)
+
+      expect(page).not_to have_link "Remove language"
+      expect(page).not_to have_field "translation_locale"
+
+      within(".translatable-fields[data-locale='en']") do
+        fill_in_ckeditor find("textarea", visible: false)[:id],
+                         with: "There is still a long journey ahead of us"
+      end
+
+      click_button "Update Process"
+
+      expect(page).to have_current_path admin_legislation_process_milestones_path(process)
+
+      visit milestones_legislation_process_path(process)
+
+      expect(page).to have_content "There is still a long journey ahead of us"
     end
   end
 end
