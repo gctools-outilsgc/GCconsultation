@@ -42,3 +42,4 @@ public/system/
 
 # VS Code
 .vscode
+/bundle

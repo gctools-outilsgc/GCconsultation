@@ -83,7 +83,6 @@ class Budget
     scope :last_week,                   -> { where("created_at >= ?", 7.days.ago)}
     scope :sort_by_flags,               -> { order(flags_count: :desc, updated_at: :desc) }
     scope :sort_by_created_at,          -> { reorder(created_at: :desc) }
-    scope :with_milestones,             -> { joins(:milestones).distinct }
 
     scope :by_budget,         ->(budget)      { where(budget: budget) }
     scope :by_group,          ->(group_id)    { where(group_id: group_id) }
@@ -143,6 +142,8 @@ class Budget
     def self.order_filter(sorting_param)
       if sorting_param.present? && SORTING_OPTIONS.include?(sorting_param)
         send("sort_by_#{sorting_param}")
+      else
+        order(cached_votes_up: :desc).order(id: :desc)
       end
     end
 
@@ -341,6 +342,16 @@ class Budget
 
     def assigned_valuation_groups
       self.valuator_groups.collect(&:name).compact.join(', ').presence
+    end
+
+    def self.with_milestone_status_id(status_id)
+      joins(:milestones).includes(:milestones).select do |investment|
+        investment.milestone_status_id == status_id.to_i
+      end
+    end
+
+    def milestone_status_id
+      milestones.published.with_status.order_by_publication_date.last&.status_id
     end
 
     private

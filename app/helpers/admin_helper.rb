@@ -29,6 +29,10 @@ module AdminHelper
      "hidden_budget_investments"]
   end
 
+  def menu_budgets?
+    %w[budgets budget_groups budget_headings budget_investments].include?(controller_name)
+  end
+
   def menu_budget?
     ["spending_proposals"].include?(controller_name)
   end
@@ -87,10 +91,6 @@ module AdminHelper
 
   def display_user_roles(user)
     user_roles(user).join(", ")
-  end
-
-  def display_budget_goup_form(group)
-    group.errors.messages.size > 0 ? "" : "display:none"
   end
 
   private
