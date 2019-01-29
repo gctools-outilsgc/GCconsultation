@@ -1,0 +1,15 @@
+<% provide :title do %>
+  <%= t("test.header.title") %> - <%= t("test.menu.legislation") %> - <%= @process.title %> - <%= t("test.legislation.proposals.index.title") %>
+<% end %>
+
+<div class="legislation-test legislation-draft-versions-index">
+
+  <%= back_link_to test_legislation_processes_path, t("test.legislation.proposals.index.back") %>
+
+  <h2><%= @process.title %></h2>
+
+  <%= render 'test/legislation/processes/subnav', process: @process, active: 'proposals' %>
+
+  <%= render 'form' %>
+  <%= render 'proposals', proposals: @proposals %>
+</div>

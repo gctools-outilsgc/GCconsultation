@@ -1,0 +1,43 @@
+<h2><%= t("admin.tests.search.title") %></h2>
+
+<%= render 'admin/shared/user_search', url: search_admin_tests_path %>
+
+<div id="tests">
+  <% if @users.any? %>
+    <h3 class="margin"><%= page_entries_info @users %></h3>
+
+    <table id="tests">
+      <thead>
+        <th scope="col"><%= t("admin.tests.index.name") %></th>
+        <th scope="col" class="small-6"><%= t("admin.tests.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.test? && user.test.persisted? %>
+              <%= link_to t('admin.tests.test.delete'),
+                          admin_test_path(user),
+                          method: :delete,
+                          class: "button hollow alert expanded" %>
+            <% else %>
+              <%= link_to t('admin.tests.test.add'),
+                          { controller: "admin/tests",
+                            action: :create,
+                            user_id: user },
+                          method: :post,
+                          class: "button success expanded" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <div class="callout alert margin">
+      <%= t("admin.shared.no_search_results") %>
+    </div>
+  <% end %>
+</div>

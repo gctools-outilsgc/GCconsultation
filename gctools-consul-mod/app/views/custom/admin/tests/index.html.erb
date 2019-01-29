@@ -1,0 +1,54 @@
+<%= link_to t('admin.menu.activity'), admin_activity_path, class: "button float-right" %>
+
+<h2 class="inline-block"><%= t("admin.tests.index.title") %></h2>
+
+<%= render 'admin/shared/user_search', url: search_admin_tests_path %>
+
+
+
+<div id="tests">
+  <% if @tests.any? %>
+    <h3 class="margin"><%= page_entries_info @tests %></h3>
+
+    <table>
+      <thead>
+        <th scope="col"><%= t("admin.tests.index.name") %></th>
+        <th scope="col" class="small-6"><%= t("admin.tests.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <tbody>
+        <% @tests.each do |test| %>
+          <tr>
+            <td>
+              <%= test.name %>
+            </td>
+            <td>
+              <%= test.email %>
+            </td>
+            <td>
+              <% if test.persisted? %>
+                <%= link_to t('admin.tests.test.delete'),
+                            admin_tests_path(test),
+                            method: :delete,
+                            class: "button hollow alert expanded"
+                %>
+              <% else %>
+                <%= link_to t('admin.tests.test.add'),
+                            { controller: "admin/tests", action: :create,
+                              user_id: test.user_id },
+                              method: :post,
+                              class: "button success expanded" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @tests %>
+  <% else %>
+    <div class="callout primary">
+      <%= t("admin.tests.index.no_tests") %>
+    </div>
+  <% end %>
+</div>

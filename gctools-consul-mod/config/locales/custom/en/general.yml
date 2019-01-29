@@ -1,0 +1,9 @@
+en:
+  omniauth:
+    gcaccount:
+      sign_in: Sign in with GCaccount
+      sign_up: Sign up with GCaccount
+      name: GCaccount
+  layouts:
+    footer:
+      logo_canada: Symbol of the Government of Canada

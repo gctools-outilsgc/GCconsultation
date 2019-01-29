@@ -1,0 +1,14 @@
+<nav class="admin-sidebar">
+  <ul id="test_menu">
+
+  <% if feature?(:legislation) %>
+    <li class="section-title <%= "is-active" if controller.class.parent == Test::Legislation %>">
+      <%= link_to test_legislation_processes_path do %>
+        <span class="icon-file-text"></span>
+        <strong><%= t("admin.menu.legislation") %></strong>
+      <% end %>
+    </li>
+  <% end %>
+
+  </ul>
+</nav>
