@@ -120,6 +120,7 @@
 
       <div class="small-12 column">
         <h2><%= t "admin.stats.show.visits_title" %></h2>
+        <%= link_to "View CSV", get_data_visit_admin_stats_path %>
         <%= visits_chart_tag id: "visits" %>
       </div>
 
@@ -130,12 +131,10 @@
         <% end %>
       </div>
 
-      <% if feature?(:spending_proposals) %>
-        <div class="small-12 column">
-          <h2><%= t "admin.stats.show.spending_proposals_title" %></h2>
-          <%= spending_proposals_chart_tag id: "spending_proposals" %>
-        </div>
-      <% end %>
+      <div class="small-12 column">
+        <h2><%= t "admin.stats.show.spending_proposals_title" %></h2>
+        <%= spending_proposals_chart_tag id: "spending_proposals" %>
+      </div>
 
       <% if feature?(:budgets) %>
         <div class="small-12 column">

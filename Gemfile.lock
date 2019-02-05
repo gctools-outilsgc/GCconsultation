@@ -210,6 +210,7 @@ GEM
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
+    iconv (1.0.8)
     initialjs-rails (0.2.0.8)
       railties (>= 3.1, < 6.0)
     invisible_captcha (0.10.0)
@@ -254,7 +255,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    libv8 (6.7.288.46.1-x86_64-linux)
+    libv8 (6.7.288.46.1)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -578,6 +579,7 @@ DEPENDENCIES
   graphql (~> 1.7.8)
   groupdate (~> 3.2.0)
   i18n-tasks (~> 0.9.25)
+  iconv (~> 1.0.3)
   initialjs-rails (~> 0.2.0.5)
   invisible_captcha (~> 0.10.0)
   jquery-fileupload-rails

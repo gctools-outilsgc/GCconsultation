@@ -5,3 +5,4 @@
 #
 gem 'mini_racer', '0.2.3'
 gem 'omniauth_openid_connect', '~> 0.1'
+gem "iconv", "~> 1.0.3"

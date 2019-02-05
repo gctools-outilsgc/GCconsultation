@@ -1,6 +1,17 @@
-class Admin::StatsController < Admin::BaseController
+require 'csv'
+require 'open-uri'
+require 'iconv'
 
+class Admin::StatsController < Admin::BaseController
   def show
+    def get_data_visit
+      @visit_data = Visit.group_by_day(:started_at).count
+      @csv_string = CSV.generate do |csv|
+        csv << @visit_data.to_a.each {|elem| csv << elem}
+      end
+    send_data Iconv.conv('iso-8859-1//IGNORE', 'utf-8', @csv_string), filename: "something.csv"
+    end
+    
     @event_types = Ahoy::Event.group(:name).count
 
     @visits    = Visit.count
@@ -45,5 +56,4 @@ class Admin::StatsController < Admin::BaseController
     @polls = ::Poll.current
     @participants = ::Poll::Voter.where(poll: @polls)
   end
-
 end

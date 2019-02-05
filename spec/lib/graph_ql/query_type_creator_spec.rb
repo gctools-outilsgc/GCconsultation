@@ -6,6 +6,7 @@ describe GraphQL::QueryTypeCreator do
       ProposalNotification => { fields: { title: :string } },
       Proposal => { fields: { id: :integer, title: :string } }
     }
+    puts fields
   end
   let(:api_types) { GraphQL::ApiTypesCreator.create(api_type_definitions) }
 

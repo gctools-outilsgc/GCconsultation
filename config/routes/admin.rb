@@ -193,6 +193,7 @@ namespace :admin do
     get :proposal_notifications, on: :collection
     get :direct_messages, on: :collection
     get :polls, on: :collection
+    get :get_data_visit, on: :collection
   end
 
   namespace :legislation do
